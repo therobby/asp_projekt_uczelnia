@@ -1,0 +1,92 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<link rel="stylesheet" href="~/css/list.css" />
+@{
+    ViewData["Title"] = "List";
+    var isLoggedIn = false;
+    var isAdmin = false;
+    if (ViewBag.LoggedIn != null)
+    {
+        isLoggedIn = ViewBag.LoggedIn ? true : false;
+    }
+    if (ViewBag.Admin != null)
+    {
+        isAdmin = ViewBag.Admin ? true : false;
+    }
+}
+
+<div class="container">
+    <main role="main" class="pb-3">
+        @{
+            if (isLoggedIn)
+            {
+                <div><button onclick="redirectToAdd()">Dodaj</button></div>
+            }
+        }
+        <div class="text-center">
+            <h1>Lista:</h1>
+            <table id="lostTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Imię
+                        </th>
+                        <th>
+                            Nazwisko
+                        </th>
+                        <th>
+                            Płeć
+                        </th>
+                        <th>
+                            Ostatnio widziany
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var lostPpl = (List<Lost>)ViewBag.Losts;
+                        var usrID = HttpContextAccessor.HttpContext.Session.Keys.Contains("UserID") ? HttpContextAccessor.HttpContext.Session.GetString("UserID") : "";
+
+                        foreach (var lost in lostPpl)
+                        {
+                            if (lost.DodanaPrzez == usrID)
+                            {
+                                <tr class="seen" onclick="showMore('@lost.Id');">
+                                    <td>@lost.Imie</td>
+                                    <td>@lost.Nazwisko</td>
+                                    <td>@lost.Plec</td>
+                                    <td>@lost.OstatniaLokalizacja</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr onclick="showMore('@lost.Id');">
+                                    <td>@lost.Imie</td>
+                                    <td>@lost.Nazwisko</td>
+                                    <td>@lost.Plec</td>
+                                    <td>@lost.OstatniaLokalizacja</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<script>
+    function showMore(id) {
+        window.location = '/home/lost?id=' + id;
+    }
+
+    function redirectToAdd() {
+        window.location = '/User/addlost';
+    }
+
+    window.onload = () => {
+        var jq = jQuery.noConflict(true);
+        jq("#lostTable").tablesorter();
+    }
+</script>
+
+

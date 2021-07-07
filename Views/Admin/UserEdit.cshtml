@@ -1,0 +1,88 @@
+﻿@model APS.Models.EditUser
+@{
+    ViewData["Title"] = "Edytuj Użytkownika";
+}
+
+
+<div id="login-div" class="center-div">
+    <div class="login center">
+        <h1>Edytuj:</h1>
+        @using (Html.BeginForm("Admin", "SaveUserEdit", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Imie)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Imie)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Imie)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Nazwisko)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Nazwisko)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Nazwisko)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Plec)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Plec)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Plec)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.NumerTelefonu)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.NumerTelefonu)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.NumerTelefonu)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Email)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Email)</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="submit" value="Zapisz" /></td>
+                    <td><button onclick="back();">Anuluj</button></td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
+<script>
+    function back() {
+        window.location = '/admin/userlist';
+    }
+</script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

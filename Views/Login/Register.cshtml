@@ -1,0 +1,101 @@
+﻿@model APS.Models.User
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<div id="login-div" class="center-div">
+    <div class="login center">
+        <h1>Register</h1>
+        @using (Html.BeginForm("RegisterUser", "Login", FormMethod.Post))
+        {
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Imie)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Imie)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.Imie)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Nazwisko)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Nazwisko)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.Nazwisko)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Plec)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Plec)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.Plec)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.NumerTelefonu)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.NumerTelefonu)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.NumerTelefonu)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Email)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Email)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.Email)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Password)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Password)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.Password)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="field-validation-valid">
+                @ViewData["LoginMessage"]
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="submit" value="login" /></td>
+        </tr>
+    </table>
+        }
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

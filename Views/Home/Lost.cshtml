@@ -1,0 +1,42 @@
+﻿
+@{
+    LostDisplay li = ViewData.Model;
+    ViewData["Title"] = "Lost";
+    bool editable = ViewBag.Editable;
+
+    // TODO: dodać stronę szczegółową, dodać panel admina
+
+
+}
+
+<div class="container">
+    <main role="main" class="pb-3">
+        <div class="text-center">
+            <h1>Zaginiony:</h1>
+
+            <img src="@Url.Content(@li.Photo)" />
+            <h1>Imie: @li.Imie</h1>
+            <h1>Nazwisko: @li.Nazwisko</h1>
+            <h1>Płeć: @li.Plec</h1>
+            <h3>@li.Opis</h3>
+            <h5>Ostatnio widziany: @li.OstatniaLokalizacja</h5>
+
+            @{
+                if (editable)
+                {
+                    <button onclick="edit('@li.Id');">Edytuj</button>
+                    <button onclick="del('@li.Id');">Usuń</button>
+                }
+            }
+            <script>
+                function edit(id) {
+                    window.location = "/user/EditLost?id=" + id;
+                }
+
+                function del(id) {
+                    window.location = "/user/DeleteLost?id=" + id;
+                }
+            </script>
+            </div>
+        </main>
+</div>

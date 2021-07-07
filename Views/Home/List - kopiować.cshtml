@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+@{
+    ViewData["Title"] = "List";
+    var isLoggedIn = ViewBag.LoggedIn ? true : false;
+    var isAdmin = ViewBag.Admin ? true : false;
+}
+
+<div class="container">
+    <main role="main" class="pb-3">
+        @{
+            if (isLoggedIn)
+            {
+                <div><button>Dodaj</button><button>Moje wpisy</button></div>
+            }
+        }
+        <div class="text-center">
+            <h1>Lista:</h1>
+            <table id="lostTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Imię
+                        </th>
+                        <th>
+                            Nazwisko
+                        </th>
+                        <th>
+                            Płeć
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var lostPpl = (List<Lost>)ViewBag.Losts;
+                        var usrID = HttpContextAccessor.HttpContext.Session.GetString("UserID");
+
+                        foreach (var lost in lostPpl)
+                        {
+                            if (isAdmin)
+                            {
+                                        <tr>
+                                            <td>@lost.Imie</td>
+                                            <td>@lost.Nazwisko</td>
+                                            <td>@lost.Plec</td>
+                                        </tr>
+                            }
+                            else if (lost.DodanaPrzez == usrID)
+                            {
+
+                            } else
+                            {
+
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<script>
+    window.onload = () => {
+        var jq = jQuery.noConflict(true);
+        jq("#lostTable").tablesorter();
+    }
+</script>
+
+

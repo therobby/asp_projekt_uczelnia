@@ -1,0 +1,95 @@
+﻿
+@model APS.Models.LostInput
+@{
+    ViewData["Title"] = "Dodaj Zaginioną osobę";
+}
+
+
+<div id="login-div" class="center-div">
+    <div class="login center">
+        @using (Html.BeginForm("AddL", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <table>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Imie)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Imie)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Imie)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Nazwisko)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Nazwisko)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Nazwisko)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Opis)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Opis)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Opis)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.OstatniaLokalizacja)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.OstatniaLokalizacja)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.OstatniaLokalizacja)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Photo)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Photo)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Photo)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Plec)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Plec)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Plec)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Dodaj" /></td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

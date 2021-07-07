@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<link rel="stylesheet" href="~/css/list.css" />
+@{
+    ViewData["Title"] = "Lista Użytkowników";
+}
+
+<div class="container">
+    <main role="main" class="pb-3">
+        <div class="text-center">
+            <h1>Lista:</h1>
+            <table id="lostTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Imię
+                        </th>
+                        <th>
+                            Nazwisko
+                        </th>
+                        <th>
+                            Płeć
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var users = (List<User>)ViewBag.Users;
+                        var usrID = HttpContextAccessor.HttpContext.Session.Keys.Contains("UserID") ? HttpContextAccessor.HttpContext.Session.GetString("UserID") : "";
+
+                        foreach (var user in users)
+                        {
+                            if (user.Id == usrID)
+                            {
+                                <tr class="seen">
+                                    <td>@user.Imie</td>
+                                    <td>@user.Nazwisko</td>
+                                    <td>@user.Plec</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr onclick="edit('@user.Id');">
+                                    <td>@user.Imie</td>
+                                    <td>@user.Nazwisko</td>
+                                    <td>@user.Plec</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<script>
+    function edit(id) {
+        window.location = '/admin/useredit?id=' + id;
+    }
+
+    window.onload = () => {
+        var jq = jQuery.noConflict(true);
+        jq("#lostTable").tablesorter();
+    }
+</script>
+
+

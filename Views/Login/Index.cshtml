@@ -1,0 +1,54 @@
+﻿
+@model APS.Models.User
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div id="login-div" class="center-div">
+    <div class="login center">
+        <h1>Login</h1>
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Email)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Email)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.Email)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Password)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Password)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.Password)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="field-validation-valid">
+                @ViewData["LoginMessage"]
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="submit" value="login" /></td>
+        </tr>
+    </table>
+        }
+    </div>
+</div>
+<!--<script src="~/lib/jquery/dist/jquery.min.js"></script>-->
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
